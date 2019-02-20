@@ -4,12 +4,47 @@ import ReactDOM from "react-dom";
 import "./styles.css";
 
 var clicks = 0;
+var player1 = [];
+var player2 = [];
+var win = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 2, 3],
+  [3, 5, 7],
+  [1, 5, 9]
+];
 function click(e) {
   clicks++;
+  var playermove;
   if (clicks % 2 == 0) {
     e.target.src = source("o");
+    player2.push(e.target.id);
+    playermove = player2;
   } else {
     e.target.src = source("x");
+    player1.push(e.target.id);
+    playermove = player1;
+  }
+  checkwin(playermove);
+}
+
+function checkwin(playermove) {
+  console.log(playermove);
+  var won = 0;
+  for (var a = 0; a < win.length; a++) {
+    won = 0;
+    for (var i = 0; i < win[a].length; i++) {
+      if (playermove.includes("" + win[a][i])) {
+        won++;
+      }
+    }
+    if (won == 3) {
+      alert("win");
+    }
   }
 }
 
@@ -39,36 +74,36 @@ function App() {
     <div>
       <table>
         <tr>
-          <td class="cell" id="1">
-            <img onClick={click} src={source} id="img1" alt="" />
+          <td class="cell">
+            <img onClick={click} src={source} id="1" alt="" />
           </td>
-          <td className="cell" id="2">
-            <img onClick={click} src={source} id="img2" />
+          <td className="cell">
+            <img onClick={click} src={source} id="2" />
           </td>
-          <td className="cell" id="3">
-            <img onClick={click} src={source} id="img3" />
-          </td>
-        </tr>
-        <tr>
-          <td className="cell" id="4">
-            <img onClick={click} src={source} id="img4" />
-          </td>
-          <td className="cell" id="5">
-            <img onClick={click} src={source} id="img5" />
-          </td>
-          <td className="cell" id="6">
-            <img onClick={click} src={source} id="img6" />
+          <td className="cell">
+            <img onClick={click} src={source} id="3" />
           </td>
         </tr>
         <tr>
-          <td className="cell" id="7">
-            <img onClick={click} src={source} id="img7" />
+          <td className="cell">
+            <img onClick={click} src={source} id="4" />
           </td>
-          <td className="cell" id="8">
-            <img onClick={click} src={source} id="img8" />
+          <td className="cell">
+            <img onClick={click} src={source} id="5" />
           </td>
-          <td className="cell" id="9">
-            <img onClick={click} src={source} id="img9" />
+          <td className="cell">
+            <img onClick={click} src={source} id="6" />
+          </td>
+        </tr>
+        <tr>
+          <td className="cell">
+            <img onClick={click} src={source} id="7" />
+          </td>
+          <td className="cell">
+            <img onClick={click} src={source} id="8" />
+          </td>
+          <td className="cell">
+            <img onClick={click} src={source} id="9" />
           </td>
         </tr>
       </table>
