@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 import "./styles.css";
 
 var clicks = 0;
-var player1 = [];
-var player2 = [];
+var player1 = ["PLAYER 1"];
+var player2 = ["PLAYER 2"];
 var win = [
   [1, 2, 3],
   [4, 5, 6],
@@ -17,16 +17,21 @@ var win = [
   [3, 5, 7],
   [1, 5, 9]
 ];
+var WON = false;
 function click(e) {
+  const id = e.target.id;
+  if (WON == true || player2.includes(id) || player1.includes(id)) {
+    return;
+  }
   clicks++;
   var playermove;
   if (clicks % 2 == 0) {
     e.target.src = source("o");
-    player2.push(e.target.id);
+    player2.push(id);
     playermove = player2;
   } else {
     e.target.src = source("x");
-    player1.push(e.target.id);
+    player1.push(id);
     playermove = player1;
   }
   checkwin(playermove);
@@ -43,10 +48,19 @@ function checkwin(playermove) {
       }
     }
     if (won == 3) {
-      alert("win");
+      WON = true;
+      ReactDOM.render(
+        playermove[0] + " WIN",
+        document.getElementById("message")
+      );
     }
   }
 }
+
+function inn() {
+  alert(test);
+}
+function out() {}
 
 const path = {
   circle:
@@ -69,12 +83,12 @@ function source(param) {
   }
 }
 
-function App() {
-  const table = (
-    <div>
-      <table>
+const table = (
+  <div>
+    <table onMouseEnter={inn} onMouseLeave={out}>
+      <tbody>
         <tr>
-          <td class="cell">
+          <td className="cell">
             <img onClick={click} src={source} id="1" alt="" />
           </td>
           <td className="cell">
@@ -106,12 +120,10 @@ function App() {
             <img onClick={click} src={source} id="9" />
           </td>
         </tr>
-      </table>
-    </div>
-  );
-
-  return table;
-}
+      </tbody>
+    </table>
+  </div>
+);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(table, rootElement);
