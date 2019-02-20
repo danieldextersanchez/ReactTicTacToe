@@ -35,6 +35,12 @@ function click(e) {
     playermove = player1;
   }
   checkwin(playermove);
+  if (player1.length + player2.length == 11) {
+    ReactDOM.render(
+      <button onClick={reset}>RESET</button>,
+      document.getElementByID("message")
+    );
+  }
 }
 
 function checkwin(playermove) {
@@ -50,17 +56,17 @@ function checkwin(playermove) {
     if (won == 3) {
       WON = true;
       ReactDOM.render(
-        playermove[0] + " WIN",
+        <b>
+          {playermove[0]} WINS
+          <br />
+          <br />
+          <button onClick={reset}>RESET</button>
+        </b>,
         document.getElementById("message")
       );
     }
   }
 }
-
-function inn() {
-  alert(test);
-}
-function out() {}
 
 const path = {
   circle:
@@ -85,7 +91,7 @@ function source(param) {
 
 const table = (
   <div>
-    <table onMouseEnter={inn} onMouseLeave={out}>
+    <table>
       <tbody>
         <tr>
           <td className="cell">
@@ -127,3 +133,15 @@ const table = (
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(table, rootElement);
+
+function reset() {
+  var test = document.getElementsByTagName("img");
+  for (let i = 0; i < test.length; i++) {
+    test[i].removeAttribute("src");
+  }
+  player1 = ["PLAYER 1"];
+  player2 = ["PLAYER 2"];
+  clicks = 0;
+  WON = false;
+  ReactDOM.render("", document.getElementById("message"));
+}
