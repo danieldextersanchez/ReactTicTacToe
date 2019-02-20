@@ -1,2 +1,0 @@
-# ReactTicTacToe
-Created with CodeSandbox
