@@ -33,10 +33,10 @@ function click(e) {
     playermove = player1;
   }
   checkwin(playermove);
-  if (player1.length + player2.length == 11) {
+  if (player1.length + player2.length == 11 && WON == false) {
     ReactDOM.render(
       <button onClick={reset}>RESET</button>,
-      document.getElementByID("message")
+      document.getElementById("message")
     );
   } else {
     console.log(player1.length + player2.length);
@@ -91,35 +91,35 @@ const table = (
       <tbody>
         <tr>
           <td className="cell">
-            <img onClick={click} src={source} id="1" />
+            <img onClick={click} id="1" />
           </td>
           <td className="cell">
-            <img onClick={click} src={source} id="2" />
+            <img onClick={click} id="2" />
           </td>
           <td className="cell">
-            <img onClick={click} src={source} id="3" />
-          </td>
-        </tr>
-        <tr>
-          <td className="cell">
-            <img onClick={click} src={source} id="4" />
-          </td>
-          <td className="cell">
-            <img onClick={click} src={source} id="5" />
-          </td>
-          <td className="cell">
-            <img onClick={click} src={source} id="6" />
+            <img onClick={click} id="3" />
           </td>
         </tr>
         <tr>
           <td className="cell">
-            <img onClick={click} src={source} id="7" />
+            <img onClick={click} id="4" />
           </td>
           <td className="cell">
-            <img onClick={click} src={source} id="8" />
+            <img onClick={click} id="5" />
           </td>
           <td className="cell">
-            <img onClick={click} src={source} id="9" />
+            <img onClick={click} id="6" />
+          </td>
+        </tr>
+        <tr>
+          <td className="cell">
+            <img onClick={click} id="7" />
+          </td>
+          <td className="cell">
+            <img onClick={click} id="8" />
+          </td>
+          <td className="cell">
+            <img onClick={click} id="9" />
           </td>
         </tr>
       </tbody>
